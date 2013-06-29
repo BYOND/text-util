@@ -1,4 +1,4 @@
-kText
+textutil
 	var
 		const
 			// padText() sides

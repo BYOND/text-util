@@ -71,12 +71,12 @@
 	</head>
 	<body>
 		<div class='explanation'>
-			<div class='header'>kText</div>
+			<div class='header'>textutil</div>
 			<div class='leftExpand'>
-				kText is meant to replace the old Deadron text handler library while providing a little bit more in terms of functionality.
+				textutil is meant to replace the old Deadron text handler library while providing a little bit more in terms of functionality.
 				The goal I had when writing this was to make a significantly more efficient text handler using more elegant methods of handling
 				the text. Ultimately, I don't believe the differences in efficiency are that big of a deal, except for maybe when comparing
-				<a href='#kText/replaceText()'>kText.replaceText()</a> versus <tt>dd_replacetext()</tt> over a few thousand occurrences, and the
+				<a href='#textutil/replaceText()'>textutil.replaceText()</a> versus <tt>dd_replacetext()</tt> over a few thousand occurrences, and the
 				real reason to use this library is the "extra" functionality provided on top of what Deadron's already did.
 			</div>
 		</div>
@@ -86,13 +86,13 @@
 			<div class='leftExpand'>
 				Before we get into how to use the functions, an important thing to note is that this library does not use functions defined
 				within global scope --- that is to say, it doesn't use global functions. Instead, functions are defined on an object (in this case,
-				the object's type is <tt>/kText</tt>), and a single instance of the object is placed in the global scope in a variable called
-				<tt>kText</tt>.<br/>
+				the object's type is <tt>/textutil</tt>), and a single instance of the object is placed in the global scope in a variable called
+				<tt>textutil</tt>.<br/>
 				<br/>
-				What this does is essentially separate the global scope from the scope of the library, using the context of the <tt>/kText</tt>
+				What this does is essentially separate the global scope from the scope of the library, using the context of the <tt>/textutil</tt>
 				object defined in the global scope. I pretty much create my own name space for my functions, which allows me to name functions as
 				I see fit without having to worry about what other libraries might have. In this way, users will simply be calling
-				<tt>kText.blah()</tt>, fully aware of the fact that we are calling <tt>kText</tt>'s, the library's, <tt>blah()</tt> function.<br/>
+				<tt>textutil.blah()</tt>, fully aware of the fact that we are calling <tt>textutil</tt>'s, the library's, <tt>blah()</tt> function.<br/>
 <!--				<br/>
 				Another important benefit of this is that you can actually change the library's function within your project. One problem with
 				the global scope is that, functions defined globally can only be defined once, and cannot be rewritten or redefined later on.
@@ -134,53 +134,53 @@ mob
 		<div class='explanation'>
 			<div class='header'>Using the library</div>
 			<div class='leftExpand'>
-				As explained above, you will be accessing all functions using <tt>ktext.<i>functionName</i>()</tt>, not just calling <tt><i>functionName</i>()</tt>. I will leave in-depth explanations of what the functions do to the function definitions (below), and just describe the basic uses of a bunch of the functions here.<br/>
+				As explained above, you will be accessing all functions using <tt>textutil.<i>functionName</i>()</tt>, not just calling <tt><i>functionName</i>()</tt>. I will leave in-depth explanations of what the functions do to the function definitions (below), and just describe the basic uses of a bunch of the functions here.<br/>
 				<br/>
 				<i>Replacing text...</i><br/>
-				To replace every occurrence of a string within another string, simply call <a href='#kText/replaceText()'>kText.replaceText(<i>string</i>, <i>substring</i>, <i>replace</i>)</a>.
+				To replace every occurrence of a string within another string, simply call <a href='#textutil/replaceText()'>textutil.replaceText(<i>string</i>, <i>substring</i>, <i>replace</i>)</a>.
 
 <div class='example'>var/string = "I hate cake."
-var/fixedString = kText.replaceText(string, "cake", "things that aren't cake")
+var/fixedString = textutil.replaceText(string, "cake", "things that aren't cake")
 // fixedString == "I hate things that aren't cake."</div>
 
-				There is a case sensitive version of this function, referred to as <a href='#kText/replaceTextCase()'>kText.replaceTextCase(<i>string</i>, <i>substring</i>, <i>replace</i>)</a>.<br/>
+				There is a case sensitive version of this function, referred to as <a href='#textutil/replaceTextCase()'>textutil.replaceTextCase(<i>string</i>, <i>substring</i>, <i>replace</i>)</a>.<br/>
 				<br/>
 				<i>Converting a string to a list...</i><br/>
 				To separate a string into list entries, using a certain substring as a delimiter for those entries, simply call
-				<a href='#kText/text2list()'>kText.text2list(<i>string</i>, <i>delimiter</i>)</a>.
+				<a href='#textutil/text2list()'>textutil.text2list(<i>string</i>, <i>delimiter</i>)</a>.
 
 <div class='example'>var/string = "This is a test."
-var/list/separated = kText.text2list(string, " ")
+var/list/separated = textutil.text2list(string, " ")
 // separated = list("This", "is", "a", "test.")</div>
 
-				There is a case sensitive version of this function, referred to as <a href='#kText/text2listCase()'>kText.text2listCase(<i>string</i>, <i>delimiter</i>)</a>.<br/>
+				There is a case sensitive version of this function, referred to as <a href='#textutil/text2listCase()'>textutil.text2listCase(<i>string</i>, <i>delimiter</i>)</a>.<br/>
 				<br/>
 				<i>Converting a list to a string...</i><br/>
 				To separate a list into a string, using a certain substring as a delimiter for those entries, simply call
-				<a href='#kText/list2text()'>kText.list2text(<i>list/separated</i>, <i>delimiter</i>)</a>.
+				<a href='#textutil/list2text()'>textutil.list2text(<i>list/separated</i>, <i>delimiter</i>)</a>.
 
 <div class='example'>var/list/separated = list("This", "is", "a", "test.")
-var/string = kText.list2text(separated, " ")
+var/string = textutil.list2text(separated, " ")
 // string == "This is a test."</div>
 				
 				<br/>
 				<i>Padding a string...</i><br/>
-				To pad a string to a certain size, you can call <a href='#kText/padText()'>kText.padText(<i>string</i>, <i>size</i>, <i>padSide</i>, <i>padCharacter</i>)</a>.
+				To pad a string to a certain size, you can call <a href='#textutil/padText()'>textutil.padText(<i>string</i>, <i>size</i>, <i>padSide</i>, <i>padCharacter</i>)</a>.
 
 <div class='example'>var/string = "!centered!"
-var/padded = kText.padText(string, 20, kText.PAD_BOTH, "-")
+var/padded = textutil.padText(string, 20, textutil.PAD_BOTH, "-")
 // padded == "-----!centered!-----"</div>
 
-				Valid <tt>padSides</tt> include <tt>kText.PAD_LEFT</tt> which adds the padding to the left of the string, <tt>kText.PAD_RIGHT</tt> which adds the padding to the right of the string, and <tt>kText.PAD_BOTH</tt> which adds half of the padding to each side of the string, effectively centering it.<br/>
+				Valid <tt>padSides</tt> include <tt>textutil.PAD_LEFT</tt> which adds the padding to the left of the string, <tt>textutil.PAD_RIGHT</tt> which adds the padding to the right of the string, and <tt>textutil.PAD_BOTH</tt> which adds half of the padding to each side of the string, effectively centering it.<br/>
 				<br/>
 				<i>Autocompleting a string...</i><br/>
-				To check if a string autocompletes to another, simply call <a href='#kText/autoComplete()'>kText.autoComplete(<i>string</i>, <i>match</i>)</a>.
+				To check if a string autocompletes to another, simply call <a href='#textutil/autoComplete()'>textutil.autoComplete(<i>string</i>, <i>match</i>)</a>.
 				What I mean by "autocompletes to another," "ke" contains the beginning of "keeth," and therefore can be considered autocompletable
 				to "keeth".
 
 <div class='example'>var/string = "hippopotomostrious"
 var/input = "hippo"
-var/result = kText.autoComplete(string, input)
+var/result = textutil.autoComplete(string, input)
 // result == "hippopotomostrious" </div>
 
 				<br/>
@@ -191,8 +191,8 @@ var/result = kText.autoComplete(string, input)
 		<div class='explanation'>
 			<div class='header'>Functions defined by the library</div>
 			<sup>Functions preceded by <tt>__</tt> are "private" functions that you aren't expected to access.</sup>
-			<a name='kText.getCharacter()'></a>
-			<div class='functionDefinition'>kText/getCharacter(<i>string</i>, <i>pos</i>=1)</div>
+			<a name='textutil.getCharacter()'></a>
+			<div class='functionDefinition'>textutil/getCharacter(<i>string</i>, <i>pos</i>=1)</div>
 			<div class='leftExpand'>
 				Retrieves the character in the string at the position.<br/>
 				<b>Returns the individual character.</b><br/>
@@ -200,13 +200,13 @@ var/result = kText.autoComplete(string, input)
 				<u>Example:</u>
 
 <div class='example'>var/string = "This is a test."
-var/result = kText.getCharacter(string, 6)
+var/result = textutil.getCharacter(string, 6)
 // result == "i" </div>
 
 			</div>
 			<br/>
-			<a name='kText.isWhitespace()'></a>
-			<div class='functionDefinition'>kText/isWhitespace(<i>string</i>, <i>pos</i>=1)</div>
+			<a name='textutil.isWhitespace()'></a>
+			<div class='functionDefinition'>textutil/isWhitespace(<i>string</i>, <i>pos</i>=1)</div>
 			<div class='leftExpand'>
 				Determine if the character at the given position is whitespace.<br/>
 				Whitespace is defined as a tab, a linebreak, or a space.<br/>
@@ -215,16 +215,16 @@ var/result = kText.getCharacter(string, 6)
 				<u>Example:</u>
 
 <div class='example'>var/string = "This is a test."
-var/result = kText.isWhitespace(string, 5)
+var/result = textutil.isWhitespace(string, 5)
 // result == TRUE
 
-result = kText.isWhitespace(string, 4)
+result = textutil.isWhitespace(string, 4)
 // result == FALSE</div>
 
 			</div>
 			<br/>
-			<a name='kText.capitalize()'></a>
-			<div class='functionDefinition'>kText/capitalize(<i>string</i>)</div>
+			<a name='textutil.capitalize()'></a>
+			<div class='functionDefinition'>textutil/capitalize(<i>string</i>)</div>
 			<div class='leftExpand'>
 				Capitalizes the first character of the string given to it.<br/>
 				<b>Returns the string, capitalized.</b><br/>
@@ -232,13 +232,13 @@ result = kText.isWhitespace(string, 4)
 				<u>Example:</u>
 
 <div class='example'>var/string = "this is a test."
-var/result = kText.capitalize(string)
+var/result = textutil.capitalize(string)
 // result == "This is a test." </div>
 
 			</div>
 			<br/>
-			<a name='kText/trimWhitespace()'></a>
-			<div class='functionDefinition'>kText/trimWhitespace(<i>string</i>)</div>
+			<a name='textutil/trimWhitespace()'></a>
+			<div class='functionDefinition'>textutil/trimWhitespace(<i>string</i>)</div>
 			<div class='leftExpand'>
 				Removes the whitespace from the beginning and end of a string.<br/>
 				<b>Returns the trimmed string.</b><br/>
@@ -246,13 +246,13 @@ var/result = kText.capitalize(string)
 				<u>Example:</u>
 
 <div class='example'>var/string = "\t\t This is a test.\n"
-var/result = kText.trimWhitespace(string)
+var/result = textutil.trimWhitespace(string)
 // result == "This is a test."</div>
 
 			</div>
 			<br/>
-			<a name='kText/findNextWhitespace()'></a>
-			<div class='functionDefinition'>kText/findNextWhitespace(<i>string</i>, <i>pos</i>=1)</div>
+			<a name='textutil/findNextWhitespace()'></a>
+			<div class='functionDefinition'>textutil/findNextWhitespace(<i>string</i>, <i>pos</i>=1)</div>
 			<div class='leftExpand'>
 				Finds the next occurrence of whitespace, starting at <i>pos</i> within <i>string</i>.<br/>
 				<b>Returns the location of the next whitespace.</b><br/>
@@ -260,14 +260,14 @@ var/result = kText.trimWhitespace(string)
 				<u>Example:</u>
 
 <div class='example'>var/string = "This is a test."
-var/result = kText.findNextWhitespace(string, 1)
+var/result = textutil.findNextWhitespace(string, 1)
 // result == 5</div>
 
 			</div>
 			<br/>
-			<a name='kText/findWhich()'></a>
-			<div class='functionDefinition'>kText/findWhich(<i>string</i>, <i>sub</i>, <i>which</i>=1)</div>
-			<sup>Case-sensitive version is called kText.findWhichCase(<i>string</i>, <i>sub</i>, <i>which</i>=1)</sup>
+			<a name='textutil/findWhich()'></a>
+			<div class='functionDefinition'>textutil/findWhich(<i>string</i>, <i>sub</i>, <i>which</i>=1)</div>
+			<sup>Case-sensitive version is called textutil.findWhichCase(<i>string</i>, <i>sub</i>, <i>which</i>=1)</sup>
 			<div class='leftExpand'>
 				Finds <i>which</i> occurrence of <i>sub</i> within <i>string</i>.<br/>
 				<b>Returns the position of the <i>which</i> occurrence of <i>sub</i>.</b><br/>
@@ -275,14 +275,14 @@ var/result = kText.findNextWhitespace(string, 1)
 				<u>Example:</u>
 
 <div class='example'>var/string = "abcabc"
-var/result = kText.findWhich(string, "a", 2)
+var/result = textutil.findWhich(string, "a", 2)
 // result == 4 </div>
 
 			</div>
 			<br/>
-			<a name='kText/text2list()'></a>
-			<div class='functionDefinition'>kText/text2list(<i>string</i>, <i>delimiter</i>=" ")</div>
-			<sup>Case-sensitive version is called <tt>kText.text2listCase(<i>string</i>, <i>delimiter</i>=" ")</tt></sup>
+			<a name='textutil/text2list()'></a>
+			<div class='functionDefinition'>textutil/text2list(<i>string</i>, <i>delimiter</i>=" ")</div>
+			<sup>Case-sensitive version is called <tt>textutil.text2listCase(<i>string</i>, <i>delimiter</i>=" ")</tt></sup>
 			<div class='leftExpand'>
 				Converts a string into a list, using <i>delimiter</i> to separate entries in the string.<br/>
 				<b>Returns the separated string in list form.</b><br/>
@@ -290,13 +290,13 @@ var/result = kText.findWhich(string, "a", 2)
 				<u>Example:</u>
 
 <div class='example'>var/string = "This is a test."
-var/list/result = kText.text2list(string, " ")
+var/list/result = textutil.text2list(string, " ")
 // result == list("This", "is", "a", "test.")</div>
 
 			</div>
 			<br/>
-			<a name='kText/list2text()'></a>
-			<div class='functionDefinition'>kText/list2text(<i>list/list</i>, <i>delimiter</i>=" ")</div>
+			<a name='textutil/list2text()'></a>
+			<div class='functionDefinition'>textutil/list2text(<i>list/list</i>, <i>delimiter</i>=" ")</div>
 			<div class='leftExpand'>
 				Convert the entries from this list into a string, delimiting each entry using the given <i>delimiter</i>.<br/>
 				<b>Returns the separated list in string form.</b><br/>
@@ -304,14 +304,14 @@ var/list/result = kText.text2list(string, " ")
 				<u>Example:</u>
 
 <div class='example'>var/list/list = list("This", "is", "a", "test.")
-var/result = kText.list2text(list, " ")
+var/result = textutil.list2text(list, " ")
 // result == "This is a test."</div>
 
 			</div>
 			<br/>
-			<a name='kText/replaceText()'></a>
-			<div class='functionDefinition'>kText/replaceText(<i>string</i>, <i>sub</i>, <i>replace</i>)</div>
-			<sup>Case-sensitive version is called <tt>kText.replaceTextCase(<i>string</i>, <i>sub</i>, <i>replace</i>)</tt></sup>
+			<a name='textutil/replaceText()'></a>
+			<div class='functionDefinition'>textutil/replaceText(<i>string</i>, <i>sub</i>, <i>replace</i>)</div>
+			<sup>Case-sensitive version is called <tt>textutil.replaceTextCase(<i>string</i>, <i>sub</i>, <i>replace</i>)</tt></sup>
 			<div class='leftExpand'>
 				Replaces all occurrences of <i>sub</i> within <i>string</i> with <i>replace</i><br/>
 				<b>Returns the string after replacing the sub strings</b><br/>
@@ -319,42 +319,42 @@ var/result = kText.list2text(list, " ")
 				<u>Example:</u>
 
 <div class='example'>var/string = "This is a test."
-var/result = kText.replaceText(string, "is", "isn't")
+var/result = textutil.replaceText(string, "is", "isn't")
 // result == "This isn't a test."</div>
 
 			</div>
 			<br/>
-			<a name='kText/padText()'></a>
-			<div class='functionDefinition'>kText/padText(<i>string</i>, <i>size</i>=12, <i>padSide</i>=kText.PAD_LEFT, <i>padCharacter</i>=" ")</div>
+			<a name='textutil/padText()'></a>
+			<div class='functionDefinition'>textutil/padText(<i>string</i>, <i>size</i>=12, <i>padSide</i>=textutil.PAD_LEFT, <i>padCharacter</i>=" ")</div>
 			<div class='leftExpand'>
 				Adds padding to a string to make it match the given length, using the <i>padCharacter</i>.<br/>
 				<i>padSide</i> determines on which side the padding should be placed.<br/>
 				<br/>
 				<u>padSide</u> =<br/>
-				<tt>kText.PAD_LEFT</tt> puts the padding on the left.<br/>
-				<tt>kText.PAD_RIGHT</tt> puts the padding on the right.<br/>
-				<tt>kText.PAD_BOTH</tt> puts half of the padding on each side.<br/>
-				<sup>NOTE: for odd lengths with <tt>kText.PAD_BOTH</tt>, the extra padder is added to the right.</sup><br/>
+				<tt>textutil.PAD_LEFT</tt> puts the padding on the left.<br/>
+				<tt>textutil.PAD_RIGHT</tt> puts the padding on the right.<br/>
+				<tt>textutil.PAD_BOTH</tt> puts half of the padding on each side.<br/>
+				<sup>NOTE: for odd lengths with <tt>textutil.PAD_BOTH</tt>, the extra padder is added to the right.</sup><br/>
 				<br/>
 				<b>Returns the padded text.</b><br/>
 				<br/>
 				<u>Example:</u>
 
 <div class='example'>var/string = "!CENTERED!"
-var/result = kText.padText(string, 20, kText.PAD_LEFT, "-")
+var/result = textutil.padText(string, 20, textutil.PAD_LEFT, "-")
 // result == "----------!CENTERED!"
 
-result = kText.padText(string, 20, kText.PAD_RIGHT, "-")
+result = textutil.padText(string, 20, textutil.PAD_RIGHT, "-")
 // result == "!CENTERED!----------"
 
-result = kText.padText(string, 20, kText.PAD_BOTH, "-")
+result = textutil.padText(string, 20, textutil.PAD_BOTH, "-")
 // result == "-----!CENTERED!-----"</div>
 
 			</div>
 			<br/>
-			<a name='kText/noBreak()'></a>
-			<div class='functionDefinition'>kText/noBreak(<i>string</i>)</div>
-			<sup><b>MAY BE DEPRECATED:</b> This is essentially a call to <tt>kText.replaceText(string, "\n", " ")</tt></sup>
+			<a name='textutil/noBreak()'></a>
+			<div class='functionDefinition'>textutil/noBreak(<i>string</i>)</div>
+			<sup><b>MAY BE DEPRECATED:</b> This is essentially a call to <tt>textutil.replaceText(string, "\n", " ")</tt></sup>
 			<div class='leftExpand'>
 				Replaces all occurrences of linebreaks within the given string with simple spaces.<br/>
 				<b>Returns the break-less string.</b><br/>
@@ -362,13 +362,13 @@ result = kText.padText(string, 20, kText.PAD_BOTH, "-")
 				<u>Example:</u>
 
 <div class='example'>var/string = "This\nis\na\ntest."
-var/result = kText.noBreak(string)
+var/result = textutil.noBreak(string)
 // result == "This is a test."</div>
 
 			</div>
 			<br/>
-			<a name='kText/autoBreak()'></a>
-			<div class='functionDefinition'>kText/autoBreak(<i>string</i>, <i>charsPerLine</i>=50)</div>
+			<a name='textutil/autoBreak()'></a>
+			<div class='functionDefinition'>textutil/autoBreak(<i>string</i>, <i>charsPerLine</i>=50)</div>
 			<div class='leftExpand'>
 				Automatically places linebreaks throughout the string.<br/>
 				The one rule this procedure follows is that it will not place a linebreak until it reaches a whitespace character.<br/>
@@ -381,8 +381,8 @@ var/description = {"I really enjoy cake. It is enjoyable. One time I ate an enti
 Honestly, an entire bakery. I got sent to prison for robbery and voluntary manslaughter.
 But yeah. Cake is pretty good."}
 
-var/result = kText.noBreak(description) // remove linebreaks from the description
-result = kText.autoBreak(result, 50) // add a linebreak every 50 characters
+var/result = textutil.noBreak(description) // remove linebreaks from the description
+result = textutil.autoBreak(result, 50) // add a linebreak every 50 characters
 
 // result == {"I really enjoy cake. It is enjoyable. One time I ate
 an entire bakery. Honestly, an entire bakery. I got
@@ -391,9 +391,9 @@ But yeah. Cake is pretty good."}</div>
 
 			</div>
 			<br/>
-			<a name='kText/autoComplete()'></a>
-			<div class='functionDefinition'>kText/autoComplete(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</div>
-			<sup>Case-sensitive version is called <tt>kText.autoCompleteCase(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</tt></sup>
+			<a name='textutil/autoComplete()'></a>
+			<div class='functionDefinition'>textutil/autoComplete(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</div>
+			<sup>Case-sensitive version is called <tt>textutil.autoCompleteCase(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</tt></sup>
 			<div class='leftExpand'>
 				If the beginning characters of <i>string</i> match to the <i>needle</i> string, e.g. "cake" begins with "ca", then this will return <i>string</i>.<br/>
 				<br/>
@@ -403,17 +403,17 @@ But yeah. Cake is pretty good."}</div>
 				<u>Example:</u>
 
 <div class='example'>var/string = "male"
-var/result = kText.autoComplete(string, "m")
+var/result = textutil.autoComplete(string, "m")
 // result == "male"
 
-result = kText.autoComplete(string, "cake")
+result = textutil.autoComplete(string, "cake")
 // result == null</div>
 
 			</div>
 			<br/>
-			<a name='kText/matchKeys()'></a>
-			<div class='functionDefinition'>kText/matchKeys(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</div>
-			<sup>Case-sensitive version is called <tt>kText.matchKeysCase(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</tt></sup>
+			<a name='textutil/matchKeys()'></a>
+			<div class='functionDefinition'>textutil/matchKeys(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</div>
+			<sup>Case-sensitive version is called <tt>textutil.matchKeysCase(<i>string</i> or <i>list of strings</i>, <i>needle</i>)</tt></sup>
 			<div class='leftExpand'>
 				This function compares keywords from the <i>needle</i> string to keywords in the <i>string</i>, and if they match, returns <i>string</i>.<br/>
 				<br/>
@@ -427,16 +427,16 @@ result = kText.autoComplete(string, "cake")
 				<u>Example:</u>
 
 <div class='example'>var/string = "ali baba fourty thief"
-var/result = kText.matchKeys(string, "ali thief")
+var/result = textutil.matchKeys(string, "ali thief")
 // result == "ali baba fourty thief"
 
-result = kText.matchKeys(string, "ali thief cake")
+result = textutil.matchKeys(string, "ali thief cake")
 // result == null</div>
 
 			</div>
 			<br/>
-			<a name='kText/repeatText()'></a>
-			<div class='functionDefinition'>kText/repeatText(<i>string</i>, <i>count</i>=2)</div>
+			<a name='textutil/repeatText()'></a>
+			<div class='functionDefinition'>textutil/repeatText(<i>string</i>, <i>count</i>=2)</div>
 			<div class='leftExpand'>
 				Repeats <i>string</i> <i>count</i> times.<br/>
 				<b>Returns the repeated string.</b><br/>
@@ -444,18 +444,18 @@ result = kText.matchKeys(string, "ali thief cake")
 				<u>Example:</u>
 
 <div class='example'>var/string = "-"
-var/result = kText.repeatText(string, 10)
+var/result = textutil.repeatText(string, 10)
 // result == "----------" </div>
 
 			</div>
 			<br/>
-			<a name='kText/file2list()'></a>
-			<div class='functionDefinition'>kText/file2list(<i>file</i>, <i>delimiter</i>="\n")</div>
-			<sup>Case-sensitive version is called <tt>kText.file2listCase(<i>file</i>, <i>delimiter</i>="\n")</tt></sup>
+			<a name='textutil/file2list()'></a>
+			<div class='functionDefinition'>textutil/file2list(<i>file</i>, <i>delimiter</i>="\n")</div>
+			<sup>Case-sensitive version is called <tt>textutil.file2listCase(<i>file</i>, <i>delimiter</i>="\n")</tt></sup>
 			<div class='leftExpand'>
 				Reads a file into a list, using a string to delimit the entries.<br/>
 				<i>file</i> can either be a file object (created with <tt>file()</tt>), or a string reference, like <tt>"directory/file.txt"</tt>.<br/>
-				It's essentially a shortened form of <tt>kText.text2list(file2text("blah.txt"), "\n")</tt>.<br/>
+				It's essentially a shortened form of <tt>textutil.text2list(file2text("blah.txt"), "\n")</tt>.<br/>
 				<b>Returns the list generated.</b><br/>
 				<br/>
 				<u>Example:</u>
@@ -466,14 +466,14 @@ var/result = kText.repeatText(string, 10)
  * blah
  */
 var/file = file("blah.txt")
-var/list/result = kText.file2list(file, "\n")
+var/list/result = textutil.file2list(file, "\n")
 // result == list("cake", "pie", "blah") </div>
 
 			</div>
 			<br/>
-			<a name='kText/hasPrefix()'></a>
-			<div class='functionDefinition'>kText/hasPrefix(<i>string</i>, <i>prefix</i>)</div>
-			<sup>Case-sensitive version is called <tt>kText.hasPrefixCase(<i>string</i>, <i>prefix</i>)</tt></sup>
+			<a name='textutil/hasPrefix()'></a>
+			<div class='functionDefinition'>textutil/hasPrefix(<i>string</i>, <i>prefix</i>)</div>
+			<sup>Case-sensitive version is called <tt>textutil.hasPrefixCase(<i>string</i>, <i>prefix</i>)</tt></sup>
 			<div class='leftExpand'>
 				Check if <i>string</i> is prefixed with <i>prefix</i>.<br/>
 				<b>Returns 1 (effectively TRUE) if the string is prefixed with the prefix, 0 (effectivley FALSE) otherwise.</b><br/>
@@ -481,14 +481,14 @@ var/list/result = kText.file2list(file, "\n")
 				<u>Example:</u>
 
 <div class='example'>var/string = "begin:blah blah"
-var/result = kText.hasPrefix(string, "begin:")
+var/result = textutil.hasPrefix(string, "begin:")
 // result == 1 (TRUE) </div>
 
 			</div>
 			<br/>
-			<a name='kText/hasSuffix()'></a>
-			<div class='functionDefinition'>kText/hasSuffix(<i>string</i>, <i>suffix</i>)</div>
-			<sup>Case-sensitive version is called <tt>kText.hasSuffixCase(<i>string</i>, <i>suffix</i>)</tt></sup>
+			<a name='textutil/hasSuffix()'></a>
+			<div class='functionDefinition'>textutil/hasSuffix(<i>string</i>, <i>suffix</i>)</div>
+			<sup>Case-sensitive version is called <tt>textutil.hasSuffixCase(<i>string</i>, <i>suffix</i>)</tt></sup>
 			<div class='leftExpand'>
 				Check if <i>string</i> is suffixed with <i>suffix</i>.<br/>
 				<b>Returns the position the suffix begins at (should always be <i>string length</i> - <i>suffix length</i>) if the string is suffixed with the suffix, 0 otherwise.</b><br/>
@@ -496,13 +496,13 @@ var/result = kText.hasPrefix(string, "begin:")
 				<u>Example:</u>
 
 <div class='example'>var/string = "blah blah:end"
-var/result = kText.hasSuffix(string, ":end")
+var/result = textutil.hasSuffix(string, ":end")
 // result == 1 (TRUE) </div>
 
 			</div>
 			<br/>
-			<a name='kText/limitText()'></a>
-			<div class='functionDefinition'>kText/limitText(<i>string</i>, <i>length</i>)</div>
+			<a name='textutil/limitText()'></a>
+			<div class='functionDefinition'>textutil/limitText(<i>string</i>, <i>length</i>)</div>
 			<div class='leftExpand'>
 				Limits the length of the given <i>string</i> to <i>length</i> characters.<br/>
 				<b>If the string is less than <i>length</i> characters long, returns <i>string</i>.<br/>Otherwise, returns the first <i>length</i> characters of <i>string</i>.</b><br/>
@@ -510,7 +510,7 @@ var/result = kText.hasSuffix(string, ":end")
 				<u>Example:</u>
 
 <div class='example'>var/string = "begin:blah blah"
-var/result = kText.hasPrefix(string, "begin:")
+var/result = textutil.hasPrefix(string, "begin:")
 // result == 1 (TRUE) </div>
 
 			</div>
@@ -519,41 +519,41 @@ var/result = kText.hasPrefix(string, "begin:")
 		<div class='explanation'>
 			<div class='header'>Members defined by the library</div>
 			<sup>Members preceded by <tt>__</tt> are "private" members that you aren't expected to access.</sup>
-			<a name='kText/PAD_LEFT'></a>
-			<div class='functionDefinition'>kText/PAD_LEFT=<tt>1</tt></div>
+			<a name='textutil/PAD_LEFT'></a>
+			<div class='functionDefinition'>textutil/PAD_LEFT=<tt>1</tt></div>
 			<div class='leftExpand'>
-				<tt>padSide</tt> value for <tt>kText.padText()</tt>.<br/>
+				<tt>padSide</tt> value for <tt>textutil.padText()</tt>.<br/>
 				Indicates that it should pad the left side of the string.
 			</div>
 			<br/>
-			<a name='kText/PAD_RIGHT'></a>
-			<div class='functionDefinition'>kText/PAD_RIGHT=<tt>2</tt></div>
+			<a name='textutil/PAD_RIGHT'></a>
+			<div class='functionDefinition'>textutil/PAD_RIGHT=<tt>2</tt></div>
 			<div class='leftExpand'>
-				<tt>padSide</tt> value for <tt>kText.padText()</tt>.<br/>
+				<tt>padSide</tt> value for <tt>textutil.padText()</tt>.<br/>
 				Indicates that it should pad the right side of the string.
 			</div>
 			<br/>
-			<a name='kText/PAD_BOTH'></a>
-			<div class='functionDefinition'>kText/PAD_BOTH=<tt>3</tt></div>
+			<a name='textutil/PAD_BOTH'></a>
+			<div class='functionDefinition'>textutil/PAD_BOTH=<tt>3</tt></div>
 			<div class='leftExpand'>
-				<tt>padSide</tt> value for <tt>kText.padText()</tt>.<br/>
+				<tt>padSide</tt> value for <tt>textutil.padText()</tt>.<br/>
 				Indicates that it should pad both sides of the string, effectively centering the string.
 			</div>
 			<br/>
-			<a name='kText/ASCII_SPACE'></a>
-			<div class='functionDefinition'>kText/ASCII_SPACE=<tt>32</tt></div>
+			<a name='textutil/ASCII_SPACE'></a>
+			<div class='functionDefinition'>textutil/ASCII_SPACE=<tt>32</tt></div>
 			<div class='leftExpand'>
 				The ASCII value for a space.
 			</div>
 			<br/>
-			<a name='kText/ASCII_SPACE'></a>
-			<div class='functionDefinition'>kText/ASCII_LINEBREAK=<tt>10</tt></div>
+			<a name='textutil/ASCII_SPACE'></a>
+			<div class='functionDefinition'>textutil/ASCII_LINEBREAK=<tt>10</tt></div>
 			<div class='leftExpand'>
 				The ASCII value for a linebreak.
 			</div>
 			<br/>
-			<a name='kText/ASCII_SPACE'></a>
-			<div class='functionDefinition'>kText/ASCII_TAB=<tt>9</tt></div>
+			<a name='textutil/ASCII_SPACE'></a>
+			<div class='functionDefinition'>textutil/ASCII_TAB=<tt>9</tt></div>
 			<div class='leftExpand'>
 				The ASCII value for a tab.
 			</div>

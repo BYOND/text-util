@@ -1,4 +1,4 @@
-// DM Environment file for kText.dme.
+// DM Environment file for text-util.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
 // New source code should be placed in .dm files: choose File/New --> Code File.
 
@@ -14,6 +14,6 @@
 
 // BEGIN_INCLUDE
 #include "global.dm"
-#include "kText.dm"
+#include "text-util.dm"
 // END_INCLUDE
 

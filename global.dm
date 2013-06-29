@@ -1,2 +1,2 @@
 var
-	kText/kText = new
+	textutil/textutil = new
